@@ -1,0 +1,17 @@
+deployments:
+  - name: blueapp_insights_enabled: true
+  model: 
+      name: sklearn_regmodel
+      version: 1
+      local_path: ./model/model/sklearn_regresion_model.pkl
+      code_configuration:
+        code: 
+          local_path: ./model/onlinescoring/
+          scoring_script: score.py
+      instance_type: mlinstance
+      environment: 
+        name: sklearn-regresion-env
+        version: 1
+        path: .conda_file: file:./model/environment/conda.yml
+        docker:
+          image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210727.v1
